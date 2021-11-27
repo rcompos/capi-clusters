@@ -1,0 +1,8 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AWSCluster
+metadata:
+  name: {{ include "capi-aws.fullname" . }}
+  namespace: default
+spec:
+  region: us-west-2
+  sshKeyName: default

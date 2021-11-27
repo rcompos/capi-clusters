@@ -1,0 +1,11 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AWSMachineTemplate
+metadata:
+  name: {{ include "capi-aws.fullname" . }}-control-plane
+  namespace: default
+spec:
+  template:
+    spec:
+      iamInstanceProfile: control-plane.cluster-api-provider-aws.sigs.k8s.io
+      instanceType: t3.small
+      sshKeyName: default
