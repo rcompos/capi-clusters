@@ -11,12 +11,12 @@ spec:
     namespace: argocd
     server:  https://kubernetes.default.svc
   source:
-    path: proj-capi-demo
+    path: charts/proj-capi-demo
     repoURL: https://github.com/rcompos/capi-clusters.git
     targetRevision: main
     helm:
       valueFiles:
-        - env/demo-aws/values.yaml
+        - env/all/values.yaml
 
   syncPolicy:
   #   automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.

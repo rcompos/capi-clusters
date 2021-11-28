@@ -1,11 +1,12 @@
 spec:
-  project: proj-capi
+  project: proj-capi-demo
   destination:
     server: https://kubernetes.default.svc
     namePrefix: ""
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git
     targetRevision: main
+    path: charts
 
 # Values file used by downstream apps
 valueFiles:
