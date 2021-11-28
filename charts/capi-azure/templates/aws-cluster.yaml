@@ -1,0 +1,23 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AzureCluster
+metadata:
+  name: {{ include "capi-azure.fullname" . }}
+  namespace: default
+spec:
+  identityRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: AzureClusterIdentity
+    name: cluster-identity
+  location: westus
+  networkSpec:
+    subnets:
+    - name: control-plane-subnet
+      role: control-plane
+    - name: node-subnet
+      natGateway:
+        name: node-natgateway
+      role: node
+    vnet:
+      name: {{ include "capi-azure.fullname" . }}-vnet
+  resourceGroup: {{ include "capi-azure.fullname" . }}
+  subscriptionID: 5dce55ac-3f08-4338-a8ca-177b4f7720ed
