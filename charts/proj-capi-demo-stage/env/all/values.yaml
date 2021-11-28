@@ -1,5 +1,5 @@
 spec:
-  project: proj-capi-demo
+  project: proj-capi-demo-stage
   destination:
     server: https://kubernetes.default.svc
     namePrefix: ""
@@ -10,7 +10,7 @@ spec:
 
 # Values file used by downstream apps
 valueFiles:
-  - values-demo-prod.yaml
+  - values-demo-stage.yaml
 
 # Application Definitions
 #
@@ -25,60 +25,9 @@ valueFiles:
 #     ignoreDiffs: true               # Ignore CRD diffs
 
 apps:
-  # AWS
-  capiAWSDev:
-    name: capi-aws
-    values: values-demo-dev.yaml
-    namespace: default
-    repo: ""
-    path: ""
-    targetRev: ""
-    ignoreDiffs: true
   capiAWSStage:
     name: capi-aws
-    values: values-demo-stage.yaml
-    namespace: default
-    repo: ""
-    path: ""
-    targetRev: ""
-    ignoreDiffs: true
-  capiAWSProd:
-    name: capi-aws
-    values: values-demo-prod.yaml
-    namespace: default
-    repo: ""
-    path: ""
-    targetRev: ""
-    ignoreDiffs: true
-  # Azure
-  capiAzureDev:
-    name: capi-azure
-    values: values-demo-dev.yaml
-    namespace: default
-    repo: ""
-    path: ""
-    targetRev: ""
-    ignoreDiffs: true
-  capiAzureStage:
-    name: capi-azure
-    values: values-demo-stage.yaml
-    namespace: default
-    repo: ""
-    path: ""
-    targetRev: ""
-    ignoreDiffs: true
-  capiAzureProd:
-    name: capi-azure
-    values: values-demo-prod.yaml
-    namespace: default
-    repo: ""
-    path: ""
-    targetRev: ""
-    ignoreDiffs: true
-  # GCP
-  capiGCPDev:
-    name: capi-gcp
-    values: values-demo-dev.yaml
+    values: ""
     namespace: default
     repo: ""
     path: ""
@@ -86,15 +35,15 @@ apps:
     ignoreDiffs: true
   capiGCPStage:
     name: capi-gcp
-    values: values-demo-stage.yaml
+    values: ""
     namespace: default
     repo: ""
     path: ""
     targetRev: ""
     ignoreDiffs: true
-  capiGCPProd:
-    name: capi-gcp
-    values: values-demo-prod.yaml
+  capiAzureStage:
+    name: capi-azure
+    values: ""
     namespace: default
     repo: ""
     path: ""

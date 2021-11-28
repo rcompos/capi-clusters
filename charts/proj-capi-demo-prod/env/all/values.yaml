@@ -1,0 +1,51 @@
+spec:
+  project: proj-capi-demo-prod
+  destination:
+    server: https://kubernetes.default.svc
+    namePrefix: ""
+  source:
+    repoURL: https://github.com/rcompos/capi-clusters.git
+    targetRevision: main
+    path: charts
+
+# Values file used by downstream apps
+valueFiles:
+  - values-demo-prod.yaml
+
+# Application Definitions
+#
+# apps: 
+#   appNickname:                      # Go conforming name (camelCase)
+#     name: name-of-app               # Canonical app name (required)
+#     values: values-my-env.yaml      # Values file (optional)
+#     namespace: custom-namespace     # Namespace (optional)
+#     repo: https://gitlab.corp.atieva.com/data/my-repo.git   # Git chart repo (optional)
+#     path: path/to/my-chart          # Path under chart repo (optional)
+#     targetRev: my/branch            # Git branch (optional)
+#     ignoreDiffs: true               # Ignore CRD diffs
+
+apps:
+  capiAWSProd:
+    name: capi-aws
+    values: ""
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiGCPProd:
+    name: capi-gcp
+    values: ""
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiAzureProd:
+    name: capi-azure
+    values: ""
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
