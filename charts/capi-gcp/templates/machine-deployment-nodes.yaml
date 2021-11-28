@@ -1,0 +1,24 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: {{ include "capi-gcp.fullname" . }}-md-0
+  namespace: default
+spec:
+  clusterName: {{ include "capi-gcp.fullname" . }}
+  replicas:  {{ .Values.workers.replicas }} 
+  selector:
+    matchLabels: null
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: {{ include "capi-gcp.fullname" . }}-md-0
+      clusterName: {{ include "capi-gcp.fullname" . }}
+      failureDomain: us-west1-a
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: GCPMachineTemplate
+        name: {{ include "capi-gcp.fullname" . }}-md-0
+      version: {{ .Values.kube.version }}

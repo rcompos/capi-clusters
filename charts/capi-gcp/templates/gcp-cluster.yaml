@@ -1,0 +1,10 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: GCPCluster
+metadata:
+  name: {{ include "capi-gcp.fullname" . }}
+  namespace: default
+spec:
+  network:
+    name: default
+  project: scandalizer
+  region: us-west1
