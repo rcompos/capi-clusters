@@ -14,5 +14,5 @@ spec:
     name: {{ include "capi-gcp.fullname" . }}-control-plane
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-    kind: AWSCluster
+    kind: GCPCluster
     name: {{ include "capi-gcp.fullname" . }}
