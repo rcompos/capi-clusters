@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: proj-capi-demo-prod
+  name: proj-capi-demo
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: proj-capi-demo-prod
+  project: proj-capi-demo
   destination:
     namespace: argocd
     server:  https://kubernetes.default.svc
   source:
-    path: charts/proj-capi-demo-prod
+    path: charts/proj-capi-demo
     repoURL: https://github.com/rcompos/capi-clusters.git
     targetRevision: main
     helm:

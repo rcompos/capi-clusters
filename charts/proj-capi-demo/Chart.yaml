@@ -1,5 +1,5 @@
 apiVersion: v2
-name: proj-capi-demo-prod
+name: proj-capi-demo
 description: A Helm chart for ArgoCD application of applications
 
 # A chart can be either an 'application' or a 'library' chart.
