@@ -1,0 +1,54 @@
+{{- range $key, $val := .Values.apps }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $val.name }}
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ $.Values.spec.project }}
+  destination:
+    {{- if $val.namespace }}
+    namespace: {{ $val.namespace }}
+    {{- else }}
+    namespace: {{ $.Values.spec.destination.namePrefix }}{{ $val.name }}
+    {{- end }}
+    server: {{ $.Values.spec.destination.server }}
+  source:
+    {{- if $val.path }}
+    path: {{ $val.path }}
+    {{- else }}
+    path: {{ $val.name }} 
+    {{- end }}
+    {{- if $val.repo }}
+    repoURL: {{ $.val.repo }}
+    {{- else }}
+    repoURL: {{ $.Values.spec.source.repoURL }}
+    {{- end }}
+    {{- if $val.targetRev }}
+    targetRevision: {{ $val.targetRev }}
+    {{- else }}
+    targetRevision: {{ $.Values.spec.source.targetRevision }}
+    {{- end }}
+    helm:
+      valueFiles:
+        {{- if $val.values }}
+        - {{ $val.values }}
+        {{- else }}
+        {{- range $.Values.valueFiles }}
+        - {{ . }}
+        {{- end }}
+        {{- end }}
+  {{- if $val.ignoreDiffs }}
+  ignoreDifferences:
+  - group: apiextensions.k8s.io
+    jsonPointers:
+    - /metadata/labels
+    kind: CustomResourceDefinition
+  {{- end }}
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+---
+{{- end }}

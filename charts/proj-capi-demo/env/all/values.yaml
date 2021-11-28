@@ -1,0 +1,101 @@
+spec:
+  project: proj-capi
+  destination:
+    server: https://kubernetes.default.svc
+    namePrefix: ""
+  source:
+    repoURL: https://github.com/rcompos/capi-clusters.git
+    targetRevision: main
+
+# Values file used by downstream apps
+valueFiles:
+  - values-demo-prod.yaml
+
+# Application Definitions
+#
+# apps: 
+#   appNickname:                      # Go conforming name (camelCase)
+#     name: name-of-app               # Canonical app name (required)
+#     values: values-my-env.yaml      # Values file (optional)
+#     namespace: custom-namespace     # Namespace (optional)
+#     repo: https://gitlab.corp.atieva.com/data/my-repo.git   # Git chart repo (optional)
+#     path: path/to/my-chart          # Path under chart repo (optional)
+#     targetRev: my/branch            # Git branch (optional)
+#     ignoreDiffs: true               # Ignore CRD diffs
+
+apps:
+  # AWS
+  capiAWSDev:
+    name: capi-aws
+    values: values-demo-dev.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiAWSStage:
+    name: capi-aws
+    values: values-demo-stage.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiAWSProd:
+    name: capi-aws
+    values: values-demo-prod.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  # Azure
+  capiAzureDev:
+    name: capi-azure
+    values: values-demo-dev.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiAzureStage:
+    name: capi-azure
+    values: values-demo-stage.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiAzureProd:
+    name: capi-azure
+    values: values-demo-prod.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  # GCP
+  capiGCPDev:
+    name: capi-gcp
+    values: values-demo-dev.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiGCPStage:
+    name: capi-gcp
+    values: values-demo-stage.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
+  capiGCPProd:
+    name: capi-gcp
+    values: values-demo-prod.yaml
+    namespace: default
+    repo: ""
+    path: ""
+    targetRev: ""
+    ignoreDiffs: true
