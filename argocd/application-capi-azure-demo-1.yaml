@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: capi-gcp-demo-stage
+  name: capi-azure-demo-1
   namespace: argocd
 spec:
   destination:
@@ -10,9 +10,9 @@ spec:
   project: default
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git 
-    path: charts/capi-gcp
+    path: charts/capi-azure
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-demo-stage.yaml  
+      - values-demo-1.yaml  
   syncPolicy: {}

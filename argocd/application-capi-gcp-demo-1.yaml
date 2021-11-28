@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: capi-gcp-demo-prod
+  name: capi-gcp-demo-1
   namespace: argocd
 spec:
   destination:
@@ -9,10 +9,10 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/rcompos/capi-clusters.git
+    repoURL: https://github.com/rcompos/capi-clusters.git 
     path: charts/capi-gcp
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-demo-prod.yaml  
+      - values-demo-1.yaml  
   syncPolicy: {}
