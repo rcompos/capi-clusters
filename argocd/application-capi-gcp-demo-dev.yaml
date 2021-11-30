@@ -14,5 +14,5 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-demo-prod.yaml
+      - values-demo-dev.yaml
   syncPolicy: {}

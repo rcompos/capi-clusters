@@ -9,7 +9,7 @@ masters:
   replicas: 3
 
 workers:
-  replicas: 3
+  replicas: 1
 
 # Default helm params
 imagePullSecrets: []
