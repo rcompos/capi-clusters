@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: capi-aws-demo-1
+  name: capi-aws-demo-prod
   namespace: argocd
 spec:
   destination:
@@ -14,5 +14,5 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-demo-1.yaml  
+      - values-demo-prod.yaml
   syncPolicy: {}
