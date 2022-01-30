@@ -216,19 +216,19 @@ export AZURE_RESOURCE_GROUP="<ResourceGroupName>"
 #### Cluster Configuration for AWS
 
 ```
-clusterctl generate cluster capi-quickstart --kubernetes-version v1.23.3 --control-plane-machine-count=3 --worker-machine-count=3 --infrastructure=aws > capi-quickstart-aws.yaml
+clusterctl generate cluster capi-quickstart-aws --infrastructure=aws --kubernetes-version v1.23.3 --control-plane-machine-count=3 --worker-machine-count=3 > capi-quickstart-aws.yaml
 ```
 
 #### Cluster Configuration for GCP
 
 ```
-clusterctl generate cluster capi-quickstart --kubernetes-version v1.23.3 --control-plane-machine-count=3 --worker-machine-count=3 --infrastructure=gcp > capi-quickstart-gcp.yaml
+clusterctl generate cluster capi-quickstart-gcp --infrastructure=gcp --kubernetes-version v1.23.3 --control-plane-machine-count=3 --worker-machine-count=3 > capi-quickstart-gcp.yaml
 ```
 
 #### Cluster Configuration for Azure
 
 ```
-clusterctl generate cluster capi-quickstart --kubernetes-version v1.23.3 --control-plane-machine-count=3 --worker-machine-count=3 --infrastructure=azure > capi-quickstart-azure.yaml
+clusterctl generate cluster capi-quickstart-azure --infrastructure=azure --kubernetes-version v1.23.3 --control-plane-machine-count=3 --worker-machine-count=3 > capi-quickstart-azure.yaml
 ```
 
 ## Create workload clusters with CLI
