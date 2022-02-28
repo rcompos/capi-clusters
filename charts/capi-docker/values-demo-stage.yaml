@@ -1,0 +1,20 @@
+# Default values for capi-docker.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+cluster:
+  name: cluster-stage
+
+kube:
+  version: v1.20.10
+
+masters:
+  replicas: 1
+
+workers:
+  replicas: 1
+
+# Default helm params
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""

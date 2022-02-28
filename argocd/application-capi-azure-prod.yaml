@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: capi-aws-demo-dev
+  name: capi-azure-prod
   namespace: argocd
 spec:
   destination:
@@ -10,9 +10,9 @@ spec:
   project: default
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git 
-    path: charts/capi-aws
+    path: charts/capi-azure
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-demo-dev.yaml
+      - values-prod.yaml
   syncPolicy: {}

@@ -3,9 +3,11 @@ Cluster-API Kubernetes cluster helm charts.
 
 ## Overview
 
-Deploy Kubernetes clusters in multiple clouds with Cluster-API. This process was performed on MacOS.
+Deploy Kubernetes clusters in multiple clouds with Cluster-API. This process was performed on MacOS. Kubernetes clusters will be deployed to AWS, GCP and Azure.
 
-The first few steps are documented in the [Cluster-API quickstart](https://cluster-api.sigs.k8s.io/user/quick-start.html). Afterwards, the Kubernetes clusters defined as Helm charts in this repo will be deployed to AWS, GCP and Azure.
+The first few steps are documented in the [Cluster-API quickstart](https://cluster-api.sigs.k8s.io/user/quick-start.html). This includes required software and cloud credentials setup.
+
+Kubernetes clusters can be deployed from command-line or using ArgoCD and Helm charts.
 
 ___Warning: After creating clusters for a demo or to experiment, remember to shut them all down. See the clean-up section at then end.___
 
@@ -255,6 +257,9 @@ kubectl apply -f capi-quickstart-azure.yaml
 
 Access the clusters by pulling the kubeconfig files.
 
+### Deploy a CNI solution
+
+Deploy a container network interface for the clusters.
 
 ## Create workload clusters with ArgoCD and Helm charts
 
@@ -262,11 +267,9 @@ Access the clusters by pulling the kubeconfig files.
 
 Install ArgoCD deployment tool in the cluster.
 
-### Deploy a CNI solution
-
-Deploy a container network interface for the clusters.
-
 ## Clean Up
+
+### Delete Workload Clusters
 
 #### Clean Up AWS
 
@@ -286,7 +289,9 @@ kubectl delete cluster capi-quickstart-gcp
 kubectl delete cluster capi-quickstart-azure
 ```
 
-#### Delete management cluster.
+### Delete Management Cluster
+
+Delete the management cluster after all workload clusters are deleted. Otherwise existing cloud resource will be unmanaged.
 
 ```
 kind delete cluster
