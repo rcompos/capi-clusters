@@ -6,5 +6,5 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:
-  type: Z2l0
+  type: git
   url: https://github.com/rcompos/capi-clusters
