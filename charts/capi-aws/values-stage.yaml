@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 kube:
-  version: v1.20.10
+  version: v1.21.5
 
 masters:
-  replicas: 3
+  replicas: 1
 
 workers:
   replicas: 1
