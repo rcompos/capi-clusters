@@ -7,12 +7,10 @@ spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
-  # project: proj-capi-clusters
   project: default
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git 
     path: charts/capi-aws-eks
-    # targetRevision: main
     targetRevision: HEAD
     helm:
       valueFiles:
