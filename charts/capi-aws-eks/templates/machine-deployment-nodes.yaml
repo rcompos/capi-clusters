@@ -1,10 +1,10 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
-  name: {{ include "capi-aws.fullname" . }}-md-0
+  name: {{ include "capi-aws-eks.fullname" . }}-md-0
   namespace: default
 spec:
-  clusterName: {{ include "capi-aws.fullname" . }}
+  clusterName: {{ include "capi-aws-eks.fullname" . }}
   replicas:  {{ .Values.workers.replicas }} 
   selector:
     matchLabels: null
@@ -14,10 +14,10 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: KubeadmConfigTemplate
-          name: {{ include "capi-aws.fullname" . }}-md-0
-      clusterName: {{ include "capi-aws.fullname" . }}
+          name: {{ include "capi-aws-eks.fullname" . }}-md-0
+      clusterName: {{ include "capi-aws-eks.fullname" . }}
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: AWSMachineTemplate
-        name: {{ include "capi-aws.fullname" . }}-md-0
+        name: {{ include "capi-aws-eks.fullname" . }}-md-0
       version: {{ .Values.kube.version }}

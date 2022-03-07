@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: {{ include "capi-aws.fullname" . }}
+  name: {{ include "capi-aws-eks.fullname" . }}
   namespace: default
 spec:
   clusterNetwork:
@@ -11,8 +11,8 @@ spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: KubeadmControlPlane
-    name: {{ include "capi-aws.fullname" . }}-control-plane
+    name: {{ include "capi-aws-eks.fullname" . }}-control-plane
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
     kind: AWSCluster
-    name: {{ include "capi-aws.fullname" . }}
+    name: {{ include "capi-aws-eks.fullname" . }}
