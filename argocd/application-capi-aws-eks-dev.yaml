@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git 
     path: charts/capi-aws-eks
-    targetRevision: HEAD
+    targetRevision: main
     helm:
       valueFiles:
       - values-aws-eks-dev.yaml

@@ -4,9 +4,6 @@ metadata:
   name: capi-aws-eks-prod
   namespace: argocd
 spec:
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
   project: proj-capi-clusters
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git 
@@ -15,4 +12,7 @@ spec:
     helm:
       valueFiles:
       - values-aws-eks-prod.yaml
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
   syncPolicy: {}
