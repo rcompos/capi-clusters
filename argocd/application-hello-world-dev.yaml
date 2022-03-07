@@ -4,14 +4,15 @@ metadata:
   name: hello-world-dev
   namespace: argocd
 spec:
-  project: proj-capi-clusters
+  # project: proj-capi-clusters
+  project: default
   source:
     repoURL: https://github.com/rcompos/capi-clusters.git 
     path: charts/hello-world
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-dev.yaml
+        - 'values-dev.yaml'
   destination:
     namespace: default
     server: https://kubernetes.default.svc
