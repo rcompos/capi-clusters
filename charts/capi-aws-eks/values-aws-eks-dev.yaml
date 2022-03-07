@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-clusterName: capi-eks-dev
+clusterName: capi-aws-eks-dev
 
 kube:
   version: v1.21.5
