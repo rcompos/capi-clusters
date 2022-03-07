@@ -14,5 +14,5 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values-prod.yaml
+      - values-aws-eks-prod.yaml
   syncPolicy: {}
