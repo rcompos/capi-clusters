@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: capi-dev
+  name: {{ .Values.clusterName }}
   namespace: default
 spec:
   clusterNetwork:
@@ -11,16 +11,16 @@ spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: AWSManagedControlPlane
-    name: capi-dev-control-plane
+    name: {{ .Values.clusterName }}-control-plane
   infrastructureRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: AWSManagedControlPlane
-    name: capi-dev-control-plane
+    name: {{ .Values.clusterName }}-control-plane
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1beta1
 kind: AWSManagedControlPlane
 metadata:
-  name: capi-dev-control-plane
+  name: {{ .Values.clusterName }}-control-plane
   namespace: default
 spec:
   region: us-west-2
@@ -30,10 +30,10 @@ spec:
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
-  name: capi-dev-md-0
+  name: {{ .Values.clusterName }}-md-0
   namespace: default
 spec:
-  clusterName: capi-dev
+  clusterName: {{ .Values.clusterName }}
   replicas: 1
   selector:
     matchLabels: null
@@ -43,18 +43,18 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
           kind: EKSConfigTemplate
-          name: capi-dev-md-0
-      clusterName: capi-dev
+          name: {{ .Values.clusterName }}-md-0
+      clusterName: {{ .Values.clusterName }}
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: AWSMachineTemplate
-        name: capi-dev-md-0
+        name: {{ .Values.clusterName }}-md-0
       version: v1.21.5
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSMachineTemplate
 metadata:
-  name: capi-dev-md-0
+  name: {{ .Values.clusterName }}-md-0
   namespace: default
 spec:
   template:
@@ -66,7 +66,7 @@ spec:
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: EKSConfigTemplate
 metadata:
-  name: capi-dev-md-0
+  name: {{ .Values.clusterName }}-md-0
   namespace: default
 spec:
   template: {}
