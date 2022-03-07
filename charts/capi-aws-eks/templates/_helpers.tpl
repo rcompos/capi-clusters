@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "capi-aws.name" -}}
+{{- define "capi-aws-eks.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "capi-aws.fullname" -}}
+{{- define "capi-aws-eks.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "capi-aws.chart" -}}
+{{- define "capi-aws-eks.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "capi-aws.labels" -}}
-helm.sh/chart: {{ include "capi-aws.chart" . }}
-{{ include "capi-aws.selectorLabels" . }}
+{{- define "capi-aws-eks.labels" -}}
+helm.sh/chart: {{ include "capi-aws-eks.chart" . }}
+{{ include "capi-aws-eks.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "capi-aws.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "capi-aws.name" . }}
+{{- define "capi-aws-eks.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "capi-aws-eks.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "capi-aws.serviceAccountName" -}}
+{{- define "capi-aws-eks.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "capi-aws.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "capi-aws-eks.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
