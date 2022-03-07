@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: {{ include "capi-aws-eks.fullname" . }}
+  name: {{ .Values.clusterName }}
   namespace: default
 spec:
   clusterNetwork:
@@ -10,9 +10,63 @@ spec:
       - 192.168.0.0/16
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-    kind: KubeadmControlPlane
-    name: {{ include "capi-aws-eks.fullname" . }}-control-plane
+    kind: AWSManagedControlPlane
+    name: {{ .Values.clusterName }}-control-plane
   infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-    kind: AWSCluster
-    name: {{ include "capi-aws-eks.fullname" . }}
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    kind: AWSManagedControlPlane
+    name: {{ .Values.clusterName }}-control-plane
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: AWSManagedControlPlane
+metadata:
+  name: {{ .Values.clusterName }}-control-plane
+  namespace: default
+spec:
+  region: us-west-2
+  sshKeyName: {{ .Values.clusterName }}-ec2-key-us-west-2
+  version: {{ .Values.kube.version }}
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: {{ .Values.clusterName }}-md-0
+  namespace: default
+spec:
+  clusterName: {{ .Values.clusterName }}
+  replicas: 1
+  selector:
+    matchLabels: null
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: EKSConfigTemplate
+          name: {{ .Values.clusterName }}-md-0
+      clusterName: {{ .Values.clusterName }}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: AWSMachineTemplate
+        name: {{ .Values.clusterName }}-md-0
+      version: {{ .Values.kube.version }}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AWSMachineTemplate
+metadata:
+  name: {{ .Values.clusterName }}-md-0
+  namespace: default
+spec:
+  template:
+    spec:
+      iamInstanceProfile: nodes.cluster-api-provider-aws.sigs.k8s.io
+      instanceType: t3.small
+      sshKeyName: {{ .Values.clusterName }}-ec2-key-us-west-2
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+kind: EKSConfigTemplate
+metadata:
+  name: {{ .Values.clusterName }}-md-0
+  namespace: default
+spec:
+  template: {}
