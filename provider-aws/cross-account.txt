@@ -1,0 +1,35 @@
+https://cluster-api-aws.sigs.k8s.io/topics/using-cluster-api-with-cross-account-role-assumption.html
+
+AWS account rcompos: 453586317228
+AWS account scandalizer: 
+
+
+In “kiam_server” role (Source AWS account):
+{
+ "Version": "2012-10-17",
+ "Statement": [
+   {
+     "Effect": "Allow",
+     "Principal": {
+       "AWS": "arn:aws:iam::<AWS_ACCOUNT_NUMBER>:role/control-plane.cluster-api-provider-aws.sigs.k8s.io"
+     },
+     "Action": "sts:AssumeRole"
+   }
+ ]
+}
+
+
+In “controllers.cluster-api-provider-aws.sigs.k8s.io” role(target AWS account)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<SOURCE_AWS_ACCOUNT_NUMBER>:role/kserver"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+

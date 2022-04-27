@@ -1,19 +1,25 @@
 # capi-clusters
-Cluster-API Kubernetes cluster helm charts.
+
+Deploy Kubernetes clusters with Cluster-API using Helm charts and ArgoCD.
 
 ## Overview
 
-Deploy Kubernetes clusters in multiple clouds with Cluster-API. This process was performed on MacOS. Kubernetes clusters will be deployed to AWS, GCP and Azure.
+Deploy Kubernetes clusters in multiple clouds or on-prem with Cluster-API and ArgoCD using Helm charts.
+
+Kubernetes cluster example Helm charts are included for AWS, GCP, Azure and Docker.
 
 The first few steps are documented in the [Cluster-API quickstart](https://cluster-api.sigs.k8s.io/user/quick-start.html). This includes required software and cloud credentials setup.
 
 Kubernetes clusters can be deployed from command-line or using ArgoCD and Helm charts.
 
-___Warning: After creating clusters for a demo or to experiment, remember to shut them all down. See the clean-up section at then end.___
+___IMPORTANT: After creating clusters for a demo or to experiment, remember to shut them all down. See the clean-up section at then end.___
 
 ## Requirements
 
 ### Local
+
+This process was tested with a management cluster running locally on MacOS.
+Other operating systems will need to adjust (i.e. change brew commands to apt).
 
 * MacOS (modifications required for other OS's)
 * kubectl
@@ -21,13 +27,15 @@ ___Warning: After creating clusters for a demo or to experiment, remember to shu
 
 ### Cloud
 
+Credentials for cloud accounts are specific to the cloud provider.
+
 * AWS credentials
 * GCP credentials
 * Azure credentials
 
 ### Install kind
 
-Install cluster management tool Kind, locally. Kind is not for production use.
+Install cluster management utility kind, locally. Kind is not for production use.
 
 ```
 brew install kind
